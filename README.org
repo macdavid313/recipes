@@ -1,0 +1,3 @@
+#+TITLE: Recipes
+
+A collection of programming recipes.
