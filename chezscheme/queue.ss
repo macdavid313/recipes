@@ -32,8 +32,7 @@
           (begin
             (queue-vec-set! q new-vec)
             (queue-head-set! q 0)
-            (queue-tail-set! q size))
-          )))
+            (queue-tail-set! q size)))))
 
   (define (enqueue! q item)
     (when (queue-full? q)
