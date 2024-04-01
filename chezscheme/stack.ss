@@ -12,7 +12,8 @@
     (mk-stack (list)))
 
   (define (stack-push! stack item)
-    (stack-items-set! stack (cons item (stack-items stack))))
+    (stack-items-set! stack (cons item (stack-items stack)))
+    (void))
 
   (define (stack-pop! stack)
     (if (null? (stack-items stack))
