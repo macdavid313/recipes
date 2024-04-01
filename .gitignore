@@ -4,4 +4,5 @@
 tmp/
 
 *.fasl
+chezscheme/*.so
 zig-out
