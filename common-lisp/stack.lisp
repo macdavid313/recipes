@@ -3,7 +3,8 @@
 
 (defpackage #:stack
   (:use #:cl)
-  (:export #:make-stack
+  (:export #:stack
+           #:make-stack
            #:stack-push
            #:stack-pop
            #:stack-empty-p
@@ -11,12 +12,6 @@
            #:stack-top))
 
 (in-package #:stack)
-
-;;; Class
-(defclass stack ()
-  ((array :accessor stack-array
-          :initarg :array
-          :documentation "The array that represents the stack.")))
 
 ;;; Protocol
 (defgeneric stack-push (stack element)
@@ -34,7 +29,13 @@
 (defgeneric stack-top (stack)
   (:documentation "Return the top element of the stack. If the stack is empty, an error is signaled."))
 
-;;; Implementation
+;;; stack
+;;; A stack implemented by using an adjustable array.
+(defclass stack ()
+  ((array :accessor stack-array
+          :initarg :array
+          :documentation "The array that represents the stack.")))
+
 (defun make-stack (&optional (capacity 0))
   (make-instance 'stack
                  :array (make-array capacity :element-type t :adjustable t :fill-pointer 0)))
