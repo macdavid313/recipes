@@ -5,6 +5,8 @@
   (:use #:cl)
   (:export #:stack
            #:make-stack
+           #:stack/q
+           #:make-stack/q
            #:stack-push
            #:stack-pop
            #:stack-empty-p
@@ -59,3 +61,45 @@
   (if (stack-empty-p stack)
       (error "Stack is empty.")
       (aref (stack-array stack) (1- (fill-pointer (stack-array stack))))))
+
+;;; stack/q
+;;; A stack implemented by using a queue.
+;;; queue.lisp must be loaded before using this implementation.
+(defclass stack/q ()
+  ((top :initarg :top
+        :initform nil
+        :documentation "The top element of the stack.")
+   (q   :accessor stack-q
+        :initarg :q
+        :initform (queue:make-queue)
+        :documentation "The queue that represents the stack.")))
+
+(defun make-stack/q ()
+  (make-instance 'stack/q))
+
+(defmethod stack-push ((stack stack/q) element)
+  (queue:enqueue (stack-q stack) element)
+  (setf (slot-value stack 'top) element)
+  nil)
+
+(defmethod stack-pop ((stack stack/q))
+  (when (stack-empty-p stack)
+    (error "Stack is empty."))
+  (with-slots (top q) stack
+    (do ((size (queue:queue-size q) (- size 1)))
+        ((not (> size 2)))
+      (queue:enqueue q (queue:dequeue q)))
+    (setf top (queue:queue-top q))
+    (queue:enqueue q (queue:dequeue q))
+    (queue:dequeue q)))
+
+(defmethod stack-empty-p ((stack stack/q))
+  (queue:queue-empty-p (stack-q stack)))
+
+(defmethod stack-size ((stack stack/q))
+  (queue:queue-size (stack-q stack)))
+
+(defmethod stack-top ((stack stack/q))
+  (when (stack-empty-p stack)
+    (error "Stack is empty."))
+  (slot-value stack 'top))
