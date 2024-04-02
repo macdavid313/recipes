@@ -3,7 +3,14 @@
 
 (defpackage #:queue
   (:use #:cl)
-  (:export #:make-queue
+  (:export #:queue
+           #:make-queue
+           #:queue/list
+           #:make-queue/list
+           #:queue/sv
+           #:make-queue/sv
+           #:queue/s
+           #:make-queue/s
            #:queue-empty-p
            #:enqueue
            #:dequeue
@@ -160,3 +167,38 @@
   (when (queue-empty-p queue)
     (error "Queue is empty."))
   (svref (queue-sv queue) (queue-sv-head queue)))
+
+;;; queue/s
+;;; A queue that is implemented by using two stacks
+(defclass queue/s ()
+  ((s1 :accessor queue-s1 :initform nil)
+   (s2 :accessor queue-s2 :initform nil)))
+
+(defun make-queue/s ()
+  (make-instance 'queue/s))
+
+(defmethod queue-empty-p ((queue queue/s))
+  (and (null (queue-s1 queue))
+       (null (queue-s2 queue))))
+
+(defmethod enqueue ((queue queue/s) element)
+  (push element (queue-s1 queue))
+  nil)
+
+(defmethod dequeue ((queue queue/s))
+  (queue-top queue)
+  (pop (queue-s2 queue)))
+
+(defmethod queue-size ((queue queue/s))
+  (+ (length (queue-s1 queue))
+     (length (queue-s2 queue))))
+
+(defmethod queue-top ((queue queue/s))
+  (when (queue-empty-p queue)
+    (error "Queue is empty."))
+  (when (null (queue-s2 queue))
+    (do ()
+        ((null (queue-s1 queue)))
+      (push (pop (queue-s1 queue))
+            (queue-s2 queue))))
+  (first (queue-s2 queue)))
