@@ -13,5 +13,5 @@ int main() {
       N = N * 3 + 1;
     }
   }
-  cout << 1 << "\n";
+  cout << 1 << endl;
 }
