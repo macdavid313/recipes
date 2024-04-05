@@ -1,0 +1,20 @@
+#+title: Index
+#+author: Tianyu Gu
+#+email: gty@CLOS.org
+
+Accepted solutions to the [[https://cses.fi/problemset/][CSES Problem Set]], written in C++.
+
+* Introductory Problems [3/3]
+1. [X] [[file:Introductory Problems/weird-algorithms.cpp][Weird Algorithm]]
+2. [X] [[file:Introductory Problems/missing-number.cpp][Missing Number]]
+3. [X] [[file:Introductory Problems/repetitions.cpp][Repetitions]]
+* Sorting and Searching
+* Dynamic Programming
+* Graph Algorithms
+* Range Queries
+* Tree Algorithms
+* Mathematics
+* String Algorithms
+* Geometry
+* Advanced Techniques
+* Additional Problems
