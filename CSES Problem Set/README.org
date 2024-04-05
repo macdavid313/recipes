@@ -1,4 +1,4 @@
-#+title: Index
+#+title: CSES Problem Set Solutions
 #+author: Tianyu Gu
 #+email: gty@CLOS.org
 
