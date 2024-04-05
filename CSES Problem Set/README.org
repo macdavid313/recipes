@@ -4,10 +4,26 @@
 
 Accepted solutions to the [[https://cses.fi/problemset/][CSES Problem Set]], written in C++.
 
-* Introductory Problems [3/3]
+* Introductory Problems [3/19]
 1. [X] [[file:Introductory Problems/weird-algorithms.cpp][Weird Algorithm]]
 2. [X] [[file:Introductory Problems/missing-number.cpp][Missing Number]]
 3. [X] [[file:Introductory Problems/repetitions.cpp][Repetitions]]
+4. [ ] Increasing Array
+5. [ ] Permutations
+6. [ ] Number Spiral
+7. [ ] Two Knights
+8. [ ] Two Sets
+9. [ ] Bit Strings
+10. [ ] Trailing Zeros
+11. [ ] Coin Piles
+12. [ ] Palindrome Reorder
+13. [ ] Gray Code
+14. [ ] Tower of Hanoi
+15. [ ] Creating Strings
+16. [ ] Apple Division
+17. [ ] Chessboard and Queens
+18. [ ] Digit Queries
+19. [ ] Grid Paths
 * Sorting and Searching
 * Dynamic Programming
 * Graph Algorithms
